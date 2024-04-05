@@ -189,27 +189,28 @@ ${devDependenciesList}
             }
           }}
         />
-        <div className="flex items-center justify-between h-full bg-gray-400 text-white">
-          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center w-full h-full items-center justify-center">
-            <h1 className="text-2xl font-bold mb-4">
-              Drag & Drop .json file here
-            </h1>
+        <div className="flex items-center justify-center h-full bg-blue-400 text-white">
+          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center">
+            <h1 className="text-2xl">Drag & Drop .json file here</h1>
             <p>or</p>
-            <button className="border-2 bg-green-400 p-2">Browse files</button>
+            <button className="border-2 bg-gray-400 p-2">Browse files</button>
           </div>
-          <textarea
-            className=" p-4 border-2 border-gray-400 bg-white w-full h-full text-black"
-            placeholder="Or paste your package.json content here..."
-            value={packageJsonContent}
-            onChange={handleInputChange}
-            // rows={10}
-            // cols={50}
-          />
         </div>
       </div>
-      {/* <div className="flex-1 bg-white p-8">
-        
-      </div> */}
+      <div className="flex bg-white p-8">
+        <textarea
+          className="w-full h-full p-4 border-2 border-gray-300 rounded bg-white"
+          placeholder="Or paste your package.json content here..."
+          value={packageJsonContent}
+          onChange={handleInputChange}
+        />
+        <button
+          className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
+          onClick={handlePaste}
+        >
+          paste
+        </button>
+      </div>
       {showContent && (
         <div className="flex-1 bg-white p-8">
           <div className="flex flex-wrap">
@@ -269,13 +270,13 @@ ${devDependenciesList}
                   </h3>
                   <div>
                     <button
-                      className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
+                      className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
                       onClick={copyToClipboard}
                     >
                       Copy Markdown
                     </button>
                     <button
-                      className="bg-blue-500 text-white py-2 px-4 rounded"
+                      className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
                       onClick={saveToFile}
                     >
                       Save as File
