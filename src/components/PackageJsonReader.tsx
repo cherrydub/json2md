@@ -198,7 +198,7 @@ ${devDependenciesList}
       <div className="flex-1 bg-white p-8">
         <textarea
           className="w-full p-4 border-2 border-gray-400"
-          placeholder="Paste your package.json content here..."
+          placeholder="Or paste your package.json content here..."
           value={packageJsonContent}
           onChange={handleInputChange}
           rows={10}
