@@ -9,10 +9,10 @@ const buttonTailwindClassesBlue =
   "text-nowrap ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded transition-transform hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-300";
 
 const buttonTailwindClassesRed =
-  " text-nowrap ml-2 px-2 py-1 text-sm bg-red-400 text-white rounded transition-transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-300";
+  " text-nowrap px-2 text-sm bg-red-400 text-white rounded transition-transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-300";
 
 const buttonTailwindClassesGray =
-  "text-nowrap ml-2 px-2 py-1 text-sm bg-gray-400 text-white rounded transition-transform hover:scale-105 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-gray-300";
+  "text-nowrap ml-2 px-2 py-1 text-sm bg-gray-300 text-blue-400 rounded transition-transform hover:scale-105 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-gray-300";
 
 const builtInDependencies: string[] = [
   // Add your list of built-in dependencies here
@@ -199,10 +199,12 @@ ${devDependenciesList}
           }}
         />
         <div className="flex items-center justify-center h-full bg-blue-400 text-white">
-          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center m-5">
+          <div className="cursor-copy border-2 border-dashed border-white p-12 flex flex-col text-center m-5 hover:scale-110 transition">
             <h1 className="text-2xl">Drag & Drop .json file here</h1>
             <p>or</p>
-            <button className={buttonTailwindClassesGray}>Browse files</button>
+            <button className={buttonTailwindClassesGray}>
+              <i className="las la-folder-open"></i> Browse files
+            </button>
           </div>
         </div>
       </div>
@@ -214,7 +216,7 @@ ${devDependenciesList}
           onChange={handleInputChange}
         />
         <button className={buttonTailwindClassesBlue} onClick={handlePaste}>
-          Paste .json
+          <i className="las la-paste"></i> Paste .json
         </button>
       </div>
       {showContent && (
@@ -236,7 +238,7 @@ ${devDependenciesList}
                             className={buttonTailwindClassesRed}
                             onClick={() => handleDeleteDependency(dep, false)}
                           >
-                            Delete
+                            <i className="las la-trash"></i>
                           </button>
                         </li>
                       )
@@ -260,7 +262,7 @@ ${devDependenciesList}
                             className={buttonTailwindClassesRed}
                             onClick={() => handleDeleteDependency(dep, true)}
                           >
-                            Delete
+                            <i className="las la-trash"></i>
                           </button>
                         </li>
                       )
@@ -279,13 +281,13 @@ ${devDependenciesList}
                       className={buttonTailwindClassesBlue}
                       onClick={copyToClipboard}
                     >
-                      Copy Markdown
+                      <i className="las la-clipboard"></i> Copy Markdown
                     </button>
                     <button
                       className={buttonTailwindClassesBlue}
                       onClick={saveToFile}
                     >
-                      Save as File
+                      <i className="las la-save"></i> Save as File
                     </button>
                   </div>
                 </div>
