@@ -199,7 +199,7 @@ ${devDependenciesList}
           }}
         />
         <div className="flex items-center justify-center h-full bg-blue-400 text-white">
-          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center">
+          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center m-5">
             <h1 className="text-2xl">Drag & Drop .json file here</h1>
             <p>or</p>
             <button className={buttonTailwindClassesGray}>Browse files</button>
