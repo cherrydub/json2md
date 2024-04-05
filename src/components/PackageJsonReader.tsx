@@ -9,7 +9,7 @@ const buttonTailwindClassesBlue =
   "text-nowrap ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded transition-transform hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-300";
 
 const buttonTailwindClassesRed =
-  "text-nowrap ml-2 px-2 py-1 text-sm bg-red-400 text-white rounded transition-transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-300";
+  " text-nowrap ml-2 px-2 py-1 text-sm bg-red-400 text-white rounded transition-transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-300";
 
 const buttonTailwindClassesGray =
   "text-nowrap ml-2 px-2 py-1 text-sm bg-gray-400 text-white rounded transition-transform hover:scale-105 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-gray-300";
@@ -206,7 +206,7 @@ ${devDependenciesList}
           </div>
         </div>
       </div>
-      <div className="flex bg-white p-8">
+      <div className="flex bg-gray-300 p-8">
         <textarea
           className="w-full h-full p-4 border-2 border-gray-300 rounded bg-white"
           placeholder="Or paste your package.json content here..."
