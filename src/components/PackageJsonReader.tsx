@@ -116,30 +116,32 @@ ${devDependenciesList}
 `;
   };
 
-  // Function to handle window drag over
-  const handleWindowDragOver = (event: DragEvent) => {
-    event.preventDefault();
+  // Function to copy Markdown content to clipboard
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(generateReadmeContent());
   };
 
-  // Function to handle window drop
-  const handleWindowDrop = (event: DragEvent) => {
-    event.preventDefault();
-    handleFileDrop(event as any); // TypeScript workaround for event type
+  // Function to save Markdown content as file
+  const saveToFile = () => {
+    const blob = new Blob([generateReadmeContent()], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "README.md";
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
-  // Attach drag over and drop event listeners to the window
-  window.addEventListener("dragover", handleWindowDragOver);
-  window.addEventListener("drop", handleWindowDrop);
+  // Function to handle paste from clipboard
+  const handlePaste = () => {
+    navigator.clipboard.readText().then((text) => {
+      setPackageJsonContent(text);
+      parsePackageJson(text);
+    });
+  };
 
   return (
     <div>
-      <textarea
-        placeholder="Paste your package.json content here..."
-        value={packageJsonContent}
-        onChange={handleInputChange}
-        rows={10}
-        cols={50}
-      />
       <div
         style={{
           border: "2px dashed #ccc",
@@ -151,6 +153,14 @@ ${devDependenciesList}
       >
         <p>Drag and drop a .json file here</p>
       </div>
+      <textarea
+        placeholder="Paste your package.json content here..."
+        value={packageJsonContent}
+        onChange={handleInputChange}
+        rows={10}
+        cols={50}
+      />
+      <button onClick={handlePaste}>Paste</button>
       <div>
         <h3>Dependencies:</h3>
         <ul>
@@ -186,6 +196,8 @@ ${devDependenciesList}
       <div>
         <h3>Generated README.md content:</h3>
         <pre>{generateReadmeContent()}</pre>
+        <button onClick={copyToClipboard}>Copy Markdown</button>
+        <button onClick={saveToFile}>Save as File</button>
       </div>
     </div>
   );
