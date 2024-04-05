@@ -165,7 +165,8 @@ ${devDependenciesList}
   return (
     <div className="flex flex-col h-screen">
       <div
-        className={`flex-1 ${isDragging ? "bg-gray-200" : ""}`}
+        className="flex-1 bg-gray-200"
+        style={{ minHeight: "50vh" }}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleFileDrop}
@@ -189,78 +190,93 @@ ${devDependenciesList}
             }
           }}
         />
-        <div className="border-2 border-dashed border-gray-400 p-8">
-          <p>Drag and drop a .json file here</p>
+        <div className="flex items-center justify-center h-full">
+          <div className="border-2 border-dashed border-gray-400 p-8">
+            <p>Drag and drop a .json file here</p>
+          </div>
         </div>
+      </div>
+      <div
+        className="flex-1 overflow-y-auto bg-white p-8"
+        style={{ minHeight: "50vh" }}
+      >
         <textarea
-          className="mt-8 p-4 border-2 border-gray-400"
+          className="w-full p-4 border-2 border-gray-400"
           placeholder="Paste your package.json content here..."
           value={packageJsonContent}
           onChange={handleInputChange}
           rows={10}
           cols={50}
         />
-        <button
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-          onClick={handlePaste}
-        >
-          Paste
-        </button>
-      </div>
-      {showContent && (
-        <div className="flex-1 overflow-y-auto bg-green-200">
-          <div>
-            <h3 className="text-xl font-bold">Dependencies:</h3>
-            <ul className="list-disc pl-6">
-              {Object.keys(dependencies).map(
-                (dep) =>
-                  dependencies[dep] && (
-                    <li key={dep}>
-                      {dep}
-                      <button
-                        onClick={() => handleDeleteDependency(dep, false)}
+        {showContent && (
+          <div className="mt-4">
+            <div>
+              <h3 className="text-lg font-bold mb-2">Dependencies:</h3>
+              <ul className="list-disc pl-6">
+                {Object.keys(dependencies).map(
+                  (dep) =>
+                    dependencies[dep] && (
+                      <li
+                        key={dep}
+                        className="flex items-center justify-between"
                       >
-                        Delete
-                      </button>
-                    </li>
-                  )
-              )}
-            </ul>
+                        {dep}
+                        <button
+                          className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                          onClick={() => handleDeleteDependency(dep, false)}
+                        >
+                          Delete
+                        </button>
+                      </li>
+                    )
+                )}
+              </ul>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-bold mb-2">
+                Development Dependencies:
+              </h3>
+              <ul className="list-disc pl-6">
+                {Object.keys(devDependencies).map(
+                  (dep) =>
+                    devDependencies[dep] && (
+                      <li
+                        key={dep}
+                        className="flex items-center justify-between"
+                      >
+                        {dep}
+                        <button
+                          className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                          onClick={() => handleDeleteDependency(dep, true)}
+                        >
+                          Delete
+                        </button>
+                      </li>
+                    )
+                )}
+              </ul>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-bold mb-2">
+                Generated README.md content:
+              </h3>
+              <pre>{generateReadmeContent()}</pre>
+              <button
+                className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
+                onClick={copyToClipboard}
+              >
+                Copy Markdown
+              </button>
+              <button
+                className="bg-blue-500 text-white py-2 px-4 rounded"
+                onClick={saveToFile}
+              >
+                Save as File
+              </button>
+            </div>
           </div>
-          <div>
-            <h3 className="text-xl font-bold">Development Dependencies:</h3>
-            <ul className="list-disc pl-6">
-              {Object.keys(devDependencies).map(
-                (dep) =>
-                  devDependencies[dep] && (
-                    <li key={dep}>
-                      {dep}
-                      <button onClick={() => handleDeleteDependency(dep, true)}>
-                        Delete
-                      </button>
-                    </li>
-                  )
-              )}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold">Generated README.md content:</h3>
-            <pre>{generateReadmeContent()}</pre>
-            <button
-              className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
-              onClick={copyToClipboard}
-            >
-              Copy Markdown
-            </button>
-            <button
-              className="bg-blue-500 text-white py-2 px-4 rounded"
-              onClick={saveToFile}
-            >
-              Save as File
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
