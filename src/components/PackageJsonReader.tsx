@@ -165,7 +165,7 @@ ${devDependenciesList}
   return (
     <div className="flex flex-col h-screen">
       <div
-        className="flex-1 bg-gray-200"
+        className="flex-1 bg-green-200"
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleFileDrop}
@@ -195,7 +195,7 @@ ${devDependenciesList}
           </div>
         </div>
       </div>
-      <div className="flex-1 bg-white p-8">
+      <div className="flex-1 bg-blue-100 p-8">
         <textarea
           className="w-full p-4 border-2 border-gray-400"
           placeholder="Or paste your package.json content here..."
@@ -256,24 +256,31 @@ ${devDependenciesList}
                 </ul>
               </div>
             </div>
-            <div className="w-full lg:w-1/2 lg:pl-8 mt-4 lg:mt-0">
+            <div className="w-full lg:w-1/2 lg:pl-8 mt-4 lg:mt-0 ">
               <div>
-                <h3 className="text-lg font-bold mb-2">
-                  Generated README.md content:
-                </h3>
-                <pre>{generateReadmeContent()}</pre>
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
-                  onClick={copyToClipboard}
-                >
-                  Copy Markdown
-                </button>
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded"
-                  onClick={saveToFile}
-                >
-                  Save as File
-                </button>
+                <div className="flex justify-between">
+                  <h3 className="text-lg font-bold mb-2">
+                    Generated README.md
+                  </h3>
+                  <div>
+                    <button
+                      className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
+                      onClick={copyToClipboard}
+                    >
+                      Copy Markdown
+                    </button>
+                    <button
+                      className="bg-blue-500 text-white py-2 px-4 rounded"
+                      onClick={saveToFile}
+                    >
+                      Save as File
+                    </button>
+                  </div>
+                </div>
+
+                <pre className="border border-black/50 p-2 ">
+                  {generateReadmeContent()}
+                </pre>
               </div>
             </div>
           </div>
