@@ -5,6 +5,15 @@ type PackageJson = {
   devDependencies?: { [key: string]: string };
 };
 
+const buttonTailwindClassesBlue =
+  "text-nowrap ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded transition-transform hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-300";
+
+const buttonTailwindClassesRed =
+  "text-nowrap ml-2 px-2 py-1 text-sm bg-red-400 text-white rounded transition-transform hover:scale-105 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-300";
+
+const buttonTailwindClassesGray =
+  "text-nowrap ml-2 px-2 py-1 text-sm bg-gray-400 text-white rounded transition-transform hover:scale-105 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-blue-300 active:bg-gray-300";
+
 const builtInDependencies: string[] = [
   // Add your list of built-in dependencies here
   "react",
@@ -193,7 +202,7 @@ ${devDependenciesList}
           <div className="border-2 border-dashed border-white p-12 flex flex-col text-center">
             <h1 className="text-2xl">Drag & Drop .json file here</h1>
             <p>or</p>
-            <button className="border-2 bg-gray-400 p-2">Browse files</button>
+            <button className={buttonTailwindClassesGray}>Browse files</button>
           </div>
         </div>
       </div>
@@ -204,11 +213,8 @@ ${devDependenciesList}
           value={packageJsonContent}
           onChange={handleInputChange}
         />
-        <button
-          className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
-          onClick={handlePaste}
-        >
-          paste
+        <button className={buttonTailwindClassesBlue} onClick={handlePaste}>
+          Paste .json
         </button>
       </div>
       {showContent && (
@@ -223,11 +229,11 @@ ${devDependenciesList}
                       dependencies[dep] && (
                         <li
                           key={dep}
-                          className="flex items-center justify-between"
+                          className="flex items-center justify-between hover:bg-gray-200"
                         >
                           {dep}
                           <button
-                            className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                            className={buttonTailwindClassesRed}
                             onClick={() => handleDeleteDependency(dep, false)}
                           >
                             Delete
@@ -247,11 +253,11 @@ ${devDependenciesList}
                       devDependencies[dep] && (
                         <li
                           key={dep}
-                          className="flex items-center justify-between"
+                          className="flex items-center justify-between hover:bg-gray-200"
                         >
                           {dep}
                           <button
-                            className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                            className={buttonTailwindClassesRed}
                             onClick={() => handleDeleteDependency(dep, true)}
                           >
                             Delete
@@ -270,13 +276,13 @@ ${devDependenciesList}
                   </h3>
                   <div>
                     <button
-                      className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
+                      className={buttonTailwindClassesBlue}
                       onClick={copyToClipboard}
                     >
                       Copy Markdown
                     </button>
                     <button
-                      className="ml-2 px-2 py-1 text-sm bg-blue-400 text-white rounded hover:bg-blue-200 active:bg-blue-300"
+                      className={buttonTailwindClassesBlue}
                       onClick={saveToFile}
                     >
                       Save as File
