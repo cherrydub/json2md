@@ -165,7 +165,7 @@ ${devDependenciesList}
   return (
     <div className="flex flex-col h-screen">
       <div
-        className="flex-1 bg-green-200"
+        className={`flex-1 ${isDragging ? "bg-opacity-50" : ""}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleFileDrop}
@@ -189,22 +189,27 @@ ${devDependenciesList}
             }
           }}
         />
-        <div className="flex items-center justify-center h-full">
-          <div className="border-2 border-dashed border-gray-400 p-8">
-            <p>Drag and drop a .json file here</p>
+        <div className="flex items-center justify-between h-full bg-gray-400 text-white">
+          <div className="border-2 border-dashed border-white p-12 flex flex-col text-center w-full h-full items-center justify-center">
+            <h1 className="text-2xl font-bold mb-4">
+              Drag & Drop .json file here
+            </h1>
+            <p>or</p>
+            <button className="border-2 bg-green-400 p-2">Browse files</button>
           </div>
+          <textarea
+            className=" p-4 border-2 border-gray-400 bg-white w-full h-full text-black"
+            placeholder="Or paste your package.json content here..."
+            value={packageJsonContent}
+            onChange={handleInputChange}
+            // rows={10}
+            // cols={50}
+          />
         </div>
       </div>
-      <div className="flex-1 bg-blue-100 p-8">
-        <textarea
-          className="w-full p-4 border-2 border-gray-400"
-          placeholder="Or paste your package.json content here..."
-          value={packageJsonContent}
-          onChange={handleInputChange}
-          rows={10}
-          cols={50}
-        />
-      </div>
+      {/* <div className="flex-1 bg-white p-8">
+        
+      </div> */}
       {showContent && (
         <div className="flex-1 bg-white p-8">
           <div className="flex flex-wrap">
