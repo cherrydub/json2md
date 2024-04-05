@@ -166,7 +166,6 @@ ${devDependenciesList}
     <div className="flex flex-col h-screen">
       <div
         className="flex-1 bg-gray-200"
-        style={{ minHeight: "50vh" }}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleFileDrop}
@@ -196,10 +195,7 @@ ${devDependenciesList}
           </div>
         </div>
       </div>
-      <div
-        className="flex-1 overflow-y-auto bg-white p-8"
-        style={{ minHeight: "50vh" }}
-      >
+      <div className="flex-1 bg-white p-8">
         <textarea
           className="w-full p-4 border-2 border-gray-400"
           placeholder="Paste your package.json content here..."
@@ -208,75 +204,81 @@ ${devDependenciesList}
           rows={10}
           cols={50}
         />
-        {showContent && (
-          <div className="mt-4">
-            <div>
-              <h3 className="text-lg font-bold mb-2">Dependencies:</h3>
-              <ul className="list-disc pl-6">
-                {Object.keys(dependencies).map(
-                  (dep) =>
-                    dependencies[dep] && (
-                      <li
-                        key={dep}
-                        className="flex items-center justify-between"
-                      >
-                        {dep}
-                        <button
-                          className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
-                          onClick={() => handleDeleteDependency(dep, false)}
+      </div>
+      {showContent && (
+        <div className="flex-1 bg-white p-8">
+          <div className="flex flex-wrap">
+            <div className="w-full lg:w-1/2">
+              <div>
+                <h3 className="text-lg font-bold mb-2">Dependencies:</h3>
+                <ul className="list-disc pl-6">
+                  {Object.keys(dependencies).map(
+                    (dep) =>
+                      dependencies[dep] && (
+                        <li
+                          key={dep}
+                          className="flex items-center justify-between"
                         >
-                          Delete
-                        </button>
-                      </li>
-                    )
-                )}
-              </ul>
-            </div>
-            <div className="mt-4">
-              <h3 className="text-lg font-bold mb-2">
-                Development Dependencies:
-              </h3>
-              <ul className="list-disc pl-6">
-                {Object.keys(devDependencies).map(
-                  (dep) =>
-                    devDependencies[dep] && (
-                      <li
-                        key={dep}
-                        className="flex items-center justify-between"
-                      >
-                        {dep}
-                        <button
-                          className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
-                          onClick={() => handleDeleteDependency(dep, true)}
+                          {dep}
+                          <button
+                            className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                            onClick={() => handleDeleteDependency(dep, false)}
+                          >
+                            Delete
+                          </button>
+                        </li>
+                      )
+                  )}
+                </ul>
+              </div>
+              <div className="mt-4">
+                <h3 className="text-lg font-bold mb-2">
+                  Development Dependencies:
+                </h3>
+                <ul className="list-disc pl-6">
+                  {Object.keys(devDependencies).map(
+                    (dep) =>
+                      devDependencies[dep] && (
+                        <li
+                          key={dep}
+                          className="flex items-center justify-between"
                         >
-                          Delete
-                        </button>
-                      </li>
-                    )
-                )}
-              </ul>
+                          {dep}
+                          <button
+                            className="ml-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700"
+                            onClick={() => handleDeleteDependency(dep, true)}
+                          >
+                            Delete
+                          </button>
+                        </li>
+                      )
+                  )}
+                </ul>
+              </div>
             </div>
-            <div className="mt-4">
-              <h3 className="text-lg font-bold mb-2">
-                Generated README.md content:
-              </h3>
-              <pre>{generateReadmeContent()}</pre>
-              <button
-                className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
-                onClick={copyToClipboard}
-              >
-                Copy Markdown
-              </button>
-              <button
-                className="bg-blue-500 text-white py-2 px-4 rounded"
-                onClick={saveToFile}
-              >
-                Save as File
-              </button>
+            <div className="w-full lg:w-1/2 lg:pl-8 mt-4 lg:mt-0">
+              <div>
+                <h3 className="text-lg font-bold mb-2">
+                  Generated README.md content:
+                </h3>
+                <pre>{generateReadmeContent()}</pre>
+                <button
+                  className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
+                  onClick={copyToClipboard}
+                >
+                  Copy Markdown
+                </button>
+                <button
+                  className="bg-blue-500 text-white py-2 px-4 rounded"
+                  onClick={saveToFile}
+                >
+                  Save as File
+                </button>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
